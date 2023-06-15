@@ -20,7 +20,7 @@ const Card = () => {
   const [penActiveDone, setPenActiveDone] = useState(false);
   const disptach = useDispatch();
   const dragItem = useRef<HTMLElement | string>(null);
-  const dragOverItem = useRef();
+  const dragOverItem = useRef<HTMLElement | string>();
   const listDetails = useSelector((state: any) => state?.cardReducer);
   const [newList, setNewList] = useState(false);
   const [newListName, setListName] = useState("");
@@ -105,7 +105,7 @@ const Card = () => {
     setNewList(false);
     setListName("");
   };
-  const dropHandler = (value: any) => {
+  const dropHandler = (value: string) => {
     disptach(
       dropCard({
         draggedTo: value,
@@ -115,16 +115,16 @@ const Card = () => {
       })
     );
   };
-  const dragEnter = (position: any) => {
+  const dragEnter = (position: string) => {
     dragOverItem.current = position;
   };
 
-  const onDragOverHandler = (e: any) => {
+  const onDragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.stopPropagation();
     e.preventDefault();
   };
 
-  const editCardHandler = (index: any, value: any) => {
+  const editCardHandler = (index: number) => {
     setEditCardIndex(index);
     setModalIsActive(true);
   };
@@ -228,7 +228,7 @@ const Card = () => {
                                         <div className="pen-icon">
                                           <BsPen
                                             onClick={() => {
-                                              editCardHandler(index, key);
+                                              editCardHandler(index);
                                             }}
                                           />
                                         </div>
