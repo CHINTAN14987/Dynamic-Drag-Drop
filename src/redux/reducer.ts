@@ -47,8 +47,6 @@ const cardReducer = createSlice({
     },
     dropCard: (state, action) => {
       const { currentCard, draggedFrom, draggedTo, dropOver } = action.payload;
-      console.log(dropOver, "drop");
-      console.log(currentCard, "current");
 
       const newState = [...state?.[draggedFrom]?.list];
       const draggedItem = newState[currentCard];
