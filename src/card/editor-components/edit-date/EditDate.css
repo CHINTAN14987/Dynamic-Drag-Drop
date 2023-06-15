@@ -1,0 +1,87 @@
+.editor-heading {
+  color: #172b4d;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #a0a096;
+}
+.editor-container {
+  background-color: white;
+  position: absolute;
+  top: 20px;
+  width: 370px;
+  border-radius: 4px;
+}
+
+.editor-container .react-calendar {
+  border: none !important;
+}
+.start-date-wrapper,
+.due-date-wrapper {
+  margin: 0 0 4px 8px;
+}
+.start-date-wrapper div,
+.due-date-wrapper div {
+  display: flex;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+.start-date-wrapper div input,
+.due-date-wrapper div input {
+  width: 7rem;
+}
+.start-date-wrapper span {
+  color: #5e6c84;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+}
+.start-date-text-color {
+  color: #0079bf !important;
+}
+.start-date-input-color,
+.due-date-input-color {
+  color: #0079bf !important;
+  font-weight: 600 !important;
+  border: 2px solid #0079bf !important;
+}
+
+.due-date-wrapper span {
+  color: #0079bf;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.reminder-wrapper {
+  color: #5e6c84;
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  margin-bottom: 4px;
+  margin-top: 12px;
+  margin: 0 0 4px 8px;
+  display: flex;
+  flex-direction: column;
+}
+.reminder-wrapper p {
+  color: #5e6c84;
+  display: block;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  margin-top: 12px;
+}
+.button-wrp {
+  display: flex;
+  justify-content: space-between;
+}
+.reminder-wrapper button {
+  margin-top: 1rem !important;
+  border-radius: none !important;
+  margin-bottom: 2rem !important;
+  margin-right: 20px;
+}

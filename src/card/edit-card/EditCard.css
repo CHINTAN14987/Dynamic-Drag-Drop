@@ -1,0 +1,54 @@
+.editor-button {
+  background: #0009;
+  border-radius: 3px;
+  color: white;
+  margin: 0 0 4px 8px;
+  padding: 6px 12px 6px 8px;
+  text-decoration: none;
+  width: fit-content;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 1s ease-out;
+}
+.editor-button:hover {
+  margin-left: 20px;
+}
+.save-button {
+  border-radius: 0px !important;
+  width: 5rem !important;
+  font-size: 16px !important;
+  padding: 0 !important;
+}
+.editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+.edit-card-input {
+  width: 100%;
+  margin-bottom: 1rem;
+  min-height: 8rem;
+  word-wrap: break-word;
+  resize: none;
+  padding: 10px 5px;
+  border-radius: 8px;
+  outline: none;
+}
+.edit-container {
+  background: #0009;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 2rem;
+  padding: 10rem;
+  justify-content: center;
+}
+.text-bg-color {
+  border: 3px solid red;
+}

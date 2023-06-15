@@ -1,0 +1,14 @@
+.bg-title {
+  width: 100%;
+  min-height: 3rem;
+}
+.bg-title h3 {
+  font-weight: 700;
+  font-size: 30px;
+  color: white;
+  margin-left: 1rem;
+}
+.bg-title h4 {
+  margin-left: 1rem;
+  font-weight: 600;
+}
