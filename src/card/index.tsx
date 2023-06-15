@@ -19,7 +19,7 @@ import CardDetails from "./card-details";
 const Card = () => {
   const [penActiveDone, setPenActiveDone] = useState(false);
   const disptach = useDispatch();
-  const dragItem = useRef();
+  const dragItem = useRef<HTMLElement | string>(null);
   const dragOverItem = useRef();
   const listDetails = useSelector((state: any) => state?.cardReducer);
   const [newList, setNewList] = useState(false);
@@ -79,11 +79,11 @@ const Card = () => {
     );
   };
 
-  const listDeleteHandler = (param: any, value: any) => {
+  const listDeleteHandler = (param: string, value: number) => {
     disptach(deleteCard({ param, value }));
   };
 
-  const penDisplayDoneHandler = (value: any, listName: any) => {
+  const penDisplayDoneHandler = (value: number, listName: string) => {
     setPenActiveDone(true);
     setCardIndex(value);
     setHoverCardListName(listName);
@@ -94,10 +94,12 @@ const Card = () => {
     setHoverCardListName(null);
   };
 
-  const dragStart = (e: any, position: any) => {
+  const dragStart = (e: React.DragEvent<HTMLDivElement>, position: string) => {
     dragItem.current = position;
-    setDraggedCardAttributeName(e.target.getAttribute("data-attribute"));
+    const targetElement = e.target as HTMLDivElement;
+    setDraggedCardAttributeName(targetElement.getAttribute("data-attribute"));
   };
+
   const newListAddedHandler = () => {
     disptach(newAddedList({ value: newListName }));
     setNewList(false);

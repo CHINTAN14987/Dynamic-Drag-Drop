@@ -1,7 +1,7 @@
 export interface CardStateI {
   [key: string]: {
     key: string;
-    list: ListItemsI[]; // Update this type to match the actual type of your 'list' property
+    list: ListItemsI[];
   };
 }
 
@@ -14,4 +14,9 @@ export interface ListItemsI {
 export interface DateReminderI {
   label: string;
   value: string;
+}
+
+export interface CardPositionI {
+  label: number | string;
+  value: number | string;
 }

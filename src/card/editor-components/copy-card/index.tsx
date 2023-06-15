@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { copyCard } from "../../../redux/reducer";
 import "./CopyCard.css";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
-import { ListItemsI } from "../../../types/type";
+import { CardPositionI, ListItemsI } from "../../../types/type";
 interface IProps {
   card: ListItemsI;
   closeModal: () => void;
@@ -62,18 +62,18 @@ const CopyCard: FC<IProps> = (props) => {
     }
   }, []);
 
-  function cardLocationandSequence() {
+  function cardLocationandSequence(): CardPositionI[] {
     let arr1 = [];
     let arr2 = [];
     for (let key in list) {
-      if (JSON.stringify(list[key]).includes(card?.id as any)) {
+      if (JSON.stringify(list[key]).includes((card?.id).toString())) {
         arr1.push({ label: key, value: key });
       } else arr2.push({ label: key, value: key });
     }
     return [...arr1, ...arr2];
   }
 
-  function cardPosition() {
+  function cardPosition(): CardPositionI[] {
     let arr1 = [];
 
     for (let key in list) {
@@ -86,7 +86,7 @@ const CopyCard: FC<IProps> = (props) => {
     return arr1;
   }
 
-  function findCardDefaultLocation() {
+  function findCardDefaultLocation(): string {
     for (let value of Object.entries(list)) {
       let key = value[0];
       let listItems: any = value[1];

@@ -1,13 +1,20 @@
 import { Button, Checkbox, Input, Select } from "antd";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
-import { useState } from "react";
+import { FC, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useDispatch } from "react-redux";
 import { saveCardLabels } from "../../../redux/reducer";
 import { DateReminderI } from "../../../types/type";
 import "./EditDate.css";
-const EditDate = ({ cardID, closeModal, listLocation, closeEdit }) => {
+interface IProps {
+  cardID: number;
+  closeModal: () => void;
+  listLocation: string;
+  closeEdit: () => void;
+}
+const EditDate: FC<IProps> = (props) => {
+  const { cardID, closeModal, listLocation, closeEdit } = props;
   const [startDateIsChecked, setStartDateIsChecked] = useState(false);
   const [dueDateIsChecked, setDueDateIsChecked] = useState(true);
   const [value, onChange] = useState<any>(
@@ -17,15 +24,20 @@ const EditDate = ({ cardID, closeModal, listLocation, closeEdit }) => {
   );
   const [remindervalue, setReminderValue] = useState(null);
   const disptach = useDispatch();
-  const handleChange = (value) => {
+  const handleChange = (value: string) => {
     setReminderValue(value);
   };
-
+  enum Reminder {
+    QuaterHour = "15 minute before",
+    HalfHour = "30 minutes before",
+    DayBefore = "1 day before",
+    HourBefore = "1 hour before",
+  }
   const reminderData: DateReminderI[] = [
-    { label: "15 minute before", value: "15 minute before" },
-    { label: "30 minutes before ", value: "30 minutes before " },
-    { label: "1 hour before", value: "1 hour before" },
-    { label: "1 day before", value: "1 day before" },
+    { label: Reminder.QuaterHour, value: Reminder.QuaterHour },
+    { label: Reminder.HalfHour, value: Reminder.HalfHour },
+    { label: Reminder.HourBefore, value: Reminder.HourBefore },
+    { label: Reminder.DayBefore, value: Reminder.DayBefore },
   ];
   const startDateHandler = (e: CheckboxChangeEvent) => {
     setStartDateIsChecked(e.target.checked);

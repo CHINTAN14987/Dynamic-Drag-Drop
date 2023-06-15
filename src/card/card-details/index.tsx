@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import "./CardDetails.css";
 interface IProps {
@@ -7,7 +7,7 @@ interface IProps {
 const index: FC<IProps> = (props) => {
   const { data } = props;
 
-  const bgColor = ["yellow", "green", "red", "blue"];
+  const bgColor: string[] = ["yellow", "green", "red", "blue"];
 
   return (
     <div>
