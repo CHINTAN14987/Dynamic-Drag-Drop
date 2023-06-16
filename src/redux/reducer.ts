@@ -18,9 +18,7 @@ const cardReducer = createSlice({
     },
     addCardTitle: (state, action) => {
       const { event, value, param, isActivated } = action.payload;
-      console.log(event);
-      console.log(value);
-      console.log(param);
+
       return {
         ...state,
         [param]: {

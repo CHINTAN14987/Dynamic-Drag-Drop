@@ -16,6 +16,7 @@ import { Button, Modal } from "antd";
 import { ListItemsI } from "../types/type";
 import EditCard from "./edit-card";
 import CardDetails from "./card-details";
+
 const Card = () => {
   const [penActiveDone, setPenActiveDone] = useState(false);
   const disptach = useDispatch();
@@ -170,7 +171,7 @@ const Card = () => {
             {Object.keys(listDetails).map((key, index) => {
               return (
                 <div className="done" key={index}>
-                  <h3>{key}</h3>
+                  <h3>{listDetails?.[key]?.key}</h3>
                   <div
                     onDragOver={onDragOverHandler}
                     onDrop={() => {
@@ -183,6 +184,7 @@ const Card = () => {
                           (card: any, index: any) => {
                             return (
                               <div
+                                key={index}
                                 onDragStart={(e) => dragStart(e, index)}
                                 draggable={card.title ? true : false}
                                 data-attribute={key}
@@ -276,16 +278,6 @@ const Card = () => {
                                       ></textarea>
                                     )}
                                   </div>
-
-                                  {editCardIndex === index && modalIsActive && (
-                                    <EditCard
-                                      listLocation={key}
-                                      card={editListData}
-                                      closeModal={() => {
-                                        setModalIsActive(false);
-                                      }}
-                                    />
-                                  )}
                                 </div>
                               </div>
                             );
@@ -323,6 +315,15 @@ const Card = () => {
                       </Button>
                     )}
                   </div>
+                  {editCardIndex === index && modalIsActive && (
+                    <EditCard
+                      listLocation={key}
+                      card={editListData}
+                      closeModal={() => {
+                        setModalIsActive(false);
+                      }}
+                    />
+                  )}
                 </div>
               );
             })}

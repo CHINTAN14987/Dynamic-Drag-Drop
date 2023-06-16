@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import React, { useRef, useState, FC } from "react";
+import React, { useState, FC } from "react";
 import { useDispatch } from "react-redux";
 import { addCardTitle } from "../../redux/reducer";
 import { ListItemsI } from "../../types/type";
@@ -15,7 +15,7 @@ const EditCard: FC<IProps> = (props: any) => {
   const { closeModal, listLocation, card } = props;
   const [editorIndex, setEditorIndex] = useState(-1);
   const [isEditLabelActive, setIsEditLabelActive] = useState(false);
-  const editors: string[] = ["Edit Labels", "Edit Dates", "Copy"];
+  const editors: string[] = ["Edit Label Text", "Edit Dates", "Copy"];
   const [background, setBackGround] = useState(true);
   const [inputValue, setInputValue] = useState(card?.title);
 
@@ -31,20 +31,19 @@ const EditCard: FC<IProps> = (props: any) => {
     );
     closeModal();
   };
-  console.log(inputValue);
+
   const [openEditor, setOpenEditor] = useState("");
   const openEditorHandler = (index: number, value: string) => {
     setOpenEditor(value);
     setEditorIndex(index);
     setBackGround(true);
-    if (value === "Edit Labels") {
+    if (value === "Edit Label Text") {
       setIsEditLabelActive(true);
       setBackGround(false);
     } else setIsEditLabelActive(false);
   };
 
   const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    console.log(e.target.value);
     setInputValue(e.target.value);
   };
   return (
@@ -53,9 +52,11 @@ const EditCard: FC<IProps> = (props: any) => {
         <textarea
           value={inputValue}
           onChange={changeHandler}
-          // readOnly={!isEditLabelActive}
+          readOnly={!isEditLabelActive}
           className={`edit-card-input ${
-            !background && openEditor === "Edit Labels" ? "text-bg-color" : ""
+            !background && openEditor === "Edit Label Text"
+              ? "text-bg-color"
+              : ""
           }`}
         ></textarea>
         <Button
@@ -71,9 +72,8 @@ const EditCard: FC<IProps> = (props: any) => {
       <div className="editor-wrapper">
         {editors?.map((editor, index) => {
           return (
-            <>
+            <div key={index}>
               <button
-                key={index}
                 className="editor-button"
                 onClick={() => {
                   openEditorHandler(index, editor);
@@ -101,7 +101,7 @@ const EditCard: FC<IProps> = (props: any) => {
                   closeEdit={closeModal}
                 />
               )}
-            </>
+            </div>
           );
         })}
       </div>

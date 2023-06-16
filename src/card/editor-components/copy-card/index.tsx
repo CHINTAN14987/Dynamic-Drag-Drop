@@ -12,7 +12,6 @@ interface IProps {
 }
 const CopyCard: FC<IProps> = (props) => {
   const { card, closeModal, closeEdit } = props;
-  console.log(card, "card");
   const list = useSelector((state: any) => state.cardReducer);
   const [keepLabel, setkeepLabels] = useState(true);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -50,8 +49,9 @@ const CopyCard: FC<IProps> = (props) => {
             },
       })
     );
-    closeModal();
+
     closeEdit();
+    closeModal();
   };
   const keepLabelOnChangeHandler = (e: CheckboxChangeEvent) => {
     setkeepLabels(e.target.checked);
@@ -68,8 +68,8 @@ const CopyCard: FC<IProps> = (props) => {
     let arr2 = [];
     for (let key in list) {
       if (JSON.stringify(list[key]).includes((card?.id).toString())) {
-        arr1.push({ label: key, value: key });
-      } else arr2.push({ label: key, value: key });
+        arr1.push({ label: list?.[key]?.key, value: key });
+      } else arr2.push({ label: list?.[key]?.key, value: key });
     }
     return [...arr1, ...arr2];
   }
