@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import { useRef, useState, FC } from "react";
+import React, { useRef, useState, FC } from "react";
 import { useDispatch } from "react-redux";
 import { addCardTitle } from "../../redux/reducer";
 import { ListItemsI } from "../../types/type";
@@ -13,25 +13,25 @@ interface IProps {
 }
 const EditCard: FC<IProps> = (props: any) => {
   const { closeModal, listLocation, card } = props;
-  console.log(card, "1");
   const [editorIndex, setEditorIndex] = useState(-1);
   const [isEditLabelActive, setIsEditLabelActive] = useState(false);
   const editors: string[] = ["Edit Labels", "Edit Dates", "Copy"];
   const [background, setBackGround] = useState(true);
+  const [inputValue, setInputValue] = useState(card?.title);
 
   const disptach = useDispatch();
-  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const saveEditCard = () => {
     disptach(
       addCardTitle({
-        event: inputRef?.current?.value,
+        event: inputValue,
         value: card.id,
         param: listLocation,
       })
     );
     closeModal();
   };
+  console.log(inputValue);
   const [openEditor, setOpenEditor] = useState("");
   const openEditorHandler = (index: number, value: string) => {
     setOpenEditor(value);
@@ -43,13 +43,17 @@ const EditCard: FC<IProps> = (props: any) => {
     } else setIsEditLabelActive(false);
   };
 
+  const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    console.log(e.target.value);
+    setInputValue(e.target.value);
+  };
   return (
     <div className="edit-container">
       <div>
         <textarea
-          ref={inputRef}
-          defaultValue={card?.title}
-          readOnly={!isEditLabelActive}
+          value={inputValue}
+          onChange={changeHandler}
+          // readOnly={!isEditLabelActive}
           className={`edit-card-input ${
             !background && openEditor === "Edit Labels" ? "text-bg-color" : ""
           }`}
