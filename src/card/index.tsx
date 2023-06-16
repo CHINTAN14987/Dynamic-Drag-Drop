@@ -29,7 +29,7 @@ const Card = () => {
   const [hoverCardListName, setHoverCardListName] = useState(null);
   const [modalIsActive, setModalIsActive] = useState(false);
   const [modalData, setModalData] = useState<ListItemsI | any>();
-
+  const [editListData, setEditListData] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = (value: ListItemsI) => {
@@ -124,9 +124,10 @@ const Card = () => {
     e.preventDefault();
   };
 
-  const editCardHandler = (index: number) => {
+  const editCardHandler = (index: number, value: ListItemsI) => {
     setEditCardIndex(index);
     setModalIsActive(true);
+    setEditListData(value);
   };
 
   return (
@@ -228,7 +229,7 @@ const Card = () => {
                                         <div className="pen-icon">
                                           <BsPen
                                             onClick={() => {
-                                              editCardHandler(index);
+                                              editCardHandler(index, card);
                                             }}
                                           />
                                         </div>
@@ -279,7 +280,7 @@ const Card = () => {
                                   {editCardIndex === index && modalIsActive && (
                                     <EditCard
                                       listLocation={key}
-                                      card={card}
+                                      card={editListData}
                                       closeModal={() => {
                                         setModalIsActive(false);
                                       }}

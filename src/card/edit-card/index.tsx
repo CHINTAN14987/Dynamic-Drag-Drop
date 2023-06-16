@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import React, { useRef, useState, FC } from "react";
+import { useRef, useState, FC } from "react";
 import { useDispatch } from "react-redux";
 import { addCardTitle } from "../../redux/reducer";
 import { ListItemsI } from "../../types/type";
@@ -9,10 +9,11 @@ import "./EditCard.css";
 interface IProps {
   closeModal: () => void;
   listLocation: string;
-  card: ListItemsI;
+  card: ListItemsI | {};
 }
-const EditCard: FC<IProps> = (props) => {
+const EditCard: FC<IProps> = (props: any) => {
   const { closeModal, listLocation, card } = props;
+  console.log(card, "1");
   const [editorIndex, setEditorIndex] = useState(-1);
   const [isEditLabelActive, setIsEditLabelActive] = useState(false);
   const editors: string[] = ["Edit Labels", "Edit Dates", "Copy"];
@@ -47,7 +48,7 @@ const EditCard: FC<IProps> = (props) => {
       <div>
         <textarea
           ref={inputRef}
-          defaultValue={card.title}
+          defaultValue={card?.title}
           readOnly={!isEditLabelActive}
           className={`edit-card-input ${
             !background && openEditor === "Edit Labels" ? "text-bg-color" : ""

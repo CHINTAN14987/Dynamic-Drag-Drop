@@ -12,6 +12,7 @@ interface IProps {
 }
 const CopyCard: FC<IProps> = (props) => {
   const { card, closeModal, closeEdit } = props;
+  console.log(card, "card");
   const list = useSelector((state: any) => state.cardReducer);
   const [keepLabel, setkeepLabels] = useState(true);
   const inputRef = useRef<HTMLTextAreaElement>(null);
