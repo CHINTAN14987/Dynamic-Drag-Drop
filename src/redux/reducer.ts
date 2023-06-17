@@ -105,10 +105,13 @@ const cardReducer = createSlice({
       return { ...state, [location]: { ...state?.[location], list: newState } };
     },
     newAddedList: (state, action) => {
-      const { value } = action.payload;
+      let { value } = action.payload;
+      // if (isNaN(value)) {
+      //   value = value;
+      // } else value = value + "obj";
       return {
         ...state,
-        [value]: { key: value, list: [] },
+        [Math.floor(Math.random() * 1000)]: { key: value, list: [] },
       };
     },
   },

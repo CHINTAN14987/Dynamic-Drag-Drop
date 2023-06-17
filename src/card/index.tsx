@@ -37,7 +37,7 @@ const Card = () => {
     setIsModalOpen(true);
     setModalData(value);
   };
-
+  console.log(listDetails, "listDe");
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -130,7 +130,17 @@ const Card = () => {
     setModalIsActive(true);
     setEditListData(value);
   };
+  // function titleDisplay(value: string) {
+  //   let temp = [];
+  //   for (let i = 0; i < value?.split("")?.length; i++) {
+  //     if (value[i] + value[i + 1] + value[i + 2] === "obj") {
+  //       break;
+  //     } else temp.push(value[i]);
+  //   }
 
+  //   return temp.join("");
+  // }
+  // titleDisplay("1obj");
   return (
     <div>
       <div className="top-Nav">
